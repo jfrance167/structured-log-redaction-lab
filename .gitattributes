@@ -1,0 +1,2 @@
+# Exact frozen bytes must survive Windows checkout normalization.
+fixtures/cases.json -text

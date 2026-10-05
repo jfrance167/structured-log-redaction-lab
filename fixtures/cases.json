@@ -1,0 +1,616 @@
+{
+  "version": 1,
+  "canary": "LAB_CANARY:invented/only+42",
+  "forms": [
+    "LAB_CANARY:invented/only+42",
+    "TEFCX0NBTkFSWTppbnZlbnRlZC9vbmx5KzQy",
+    "LAB_CANARY%3Ainvented%2Fonly%2B42",
+    "\\u004c\\u0041\\u0042\\u005f\\u0043\\u0041\\u004e\\u0041\\u0052\\u0059\\u003a\\u0069\\u006e\\u0076\\u0065\\u006e\\u0074\\u0065\\u0064\\u002f\\u006f\\u006e\\u006c\\u0079\\u002b\\u0034\\u0032"
+  ],
+  "cases": [
+    {
+      "case_id": "password-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"password\":\"innocuous\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": true
+    },
+    {
+      "case_id": "password-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"password\":\"LAB_CANARY:invented/only+42\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "renamed-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"other_name\":\"innocuous\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "renamed-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"other_name\":\"LAB_CANARY:invented/only+42\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "nested-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"extras\":{\"deep\":{\"value\":\"innocuous\"}}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "nested-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"extras\":{\"deep\":{\"value\":\"LAB_CANARY:invented/only+42\"}}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "list-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"extras\":[\"innocuous\"]}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "list-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"extras\":[\"LAB_CANARY:invented/only+42\"]}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "message-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"innocuous\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "message-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"LAB_CANARY:invented/only+42\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "exception-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"exception\":{\"message\":\"innocuous\"}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "exception-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"exception\":{\"message\":\"LAB_CANARY:invented/only+42\"}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "base64-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"innocuous\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "base64-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"TEFCX0NBTkFSWTppbnZlbnRlZC9vbmx5KzQy\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": true,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "url-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"innocuous\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "url-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"LAB_CANARY%3Ainvented%2Fonly%2B42\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": true,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "escaped-wire-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"innocuous\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "escaped-wire-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"\\u004c\\u0041\\u0042\\u005f\\u0043\\u0041\\u004e\\u0041\\u0052\\u0059\\u003a\\u0069\\u006e\\u0076\\u0065\\u006e\\u0074\\u0065\\u0064\\u002f\\u006f\\u006e\\u006c\\u0079\\u002b\\u0034\\u0032\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "double-escaped-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"innocuous\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "double-escaped-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"message\":\"\\\\u004c\\\\u0041\\\\u0042\\\\u005f\\\\u0043\\\\u0041\\\\u004e\\\\u0041\\\\u0052\\\\u0059\\\\u003a\\\\u0069\\\\u006e\\\\u0076\\\\u0065\\\\u006e\\\\u0074\\\\u0065\\\\u0064\\\\u002f\\\\u006f\\\\u006e\\\\u006c\\\\u0079\\\\u002b\\\\u0034\\\\u0032\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": true,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "key-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"innocuous_key\":\"constant\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "key-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"LAB_CANARY:invented/only+42\":\"constant\"}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": true,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "service-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "service-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"LAB_CANARY:invented/only+42\",\"context\":{\"elapsed_ms\":25}}]}",
+      "expected_events": [],
+      "expected_code": "schema.invalid",
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "event-id-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "event-id-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"LAB_CANARY:invented/only+42\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25}}]}",
+      "expected_events": [],
+      "expected_code": "schema.invalid",
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "timing-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "timing-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":\"LAB_CANARY:invented/only+42\"}}]}",
+      "expected_events": [],
+      "expected_code": "schema.invalid",
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "context-type-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "context-type-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":[\"LAB_CANARY:invented/only+42\"]}]}",
+      "expected_events": [],
+      "expected_code": "schema.invalid",
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "headers-benign",
+      "canary": false,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"headers\":{\"authorization\":\"innocuous\"}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    },
+    {
+      "case_id": "headers-canary",
+      "canary": true,
+      "wire": "{\"schema_version\":1,\"events\":[{\"event_id\":\"lab-event-0001\",\"event_type\":\"authentication\",\"outcome\":\"failure\",\"severity\":\"medium\",\"service\":\"sshd\",\"context\":{\"elapsed_ms\":25},\"headers\":{\"authorization\":\"LAB_CANARY:invented/only+42\"}}]}",
+      "expected_events": [
+        {
+          "event_id": "lab-event-0001",
+          "event_type": "authentication",
+          "outcome": "failure",
+          "severity": "medium",
+          "service": "sshd",
+          "context": {
+            "elapsed_ms": 25
+          }
+        }
+      ],
+      "expected_code": null,
+      "baseline_leak": false,
+      "baseline_benign_mask": false
+    }
+  ],
+  "expected_totals": {
+    "cases": 32,
+    "projected_events": 28,
+    "failures": 28,
+    "elapsed_ms": 700,
+    "baseline_canary_leaks": 4,
+    "baseline_benign_masks": 1
+  }
+}
