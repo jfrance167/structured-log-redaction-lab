@@ -1,2 +1,31 @@
 # Exact frozen bytes must survive Windows checkout normalization.
 fixtures/cases.json -text
+
+# Preserve reviewed snapshot bytes across checkout platforms.
+/.github/workflows/checks.yml -text
+/.github/workflows/codeql.yml -text
+/.gitignore -text
+/DECISIONS.md -text
+/LEARNING.md -text
+/LICENSE -text
+/PLAN.md -text
+/README.md -text
+/RESEARCH.md -text
+/REVIEW.md -text
+/SECURITY.md -text
+/STATE.md -text
+/VERIFICATION.md -text
+/docs/ADMISSION.md -text
+/docs/FROZEN-EVALUATION.md -text
+/docs/KNOWLEDGE-HANDOFF.md -text
+/docs/both-sinks-before-fix.json -text
+/log_minimizer/__init__.py -text
+/log_minimizer/__main__.py -text
+/log_minimizer/admission.py -text
+/log_minimizer/core.py -text
+/log_minimizer/evaluation.py -text
+/requirements-dev.txt -text
+/scripts/make_demo.py -text
+/tests/test_admission.py -text
+/tests/test_cli.py -text
+/tests/test_projection.py -text
